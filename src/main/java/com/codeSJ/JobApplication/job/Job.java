@@ -1,12 +1,26 @@
 package com.codeSJ.JobApplication.job;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+//@Table(name = "job_table")
 public class Job {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;
     private String minSalary;
     private String maxSalary;
     private String location;
+    
+	public Job() {
+		super();
+	}
+
 	public Job(long id, String title, String description, String minSalary, String maxSalary, String location) {
 		super();
 		this.id = id;
@@ -16,6 +30,7 @@ public class Job {
 		this.maxSalary = maxSalary;
 		this.location = location;
 	}
+	
 	public long getId() {
 		return id;
 	}
