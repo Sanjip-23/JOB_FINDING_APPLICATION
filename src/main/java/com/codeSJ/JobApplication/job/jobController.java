@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codeSJ.JobApplication.company.Company;
+
 
 @RestController
 @RequestMapping("/jobs")
@@ -38,6 +40,7 @@ public class jobController {
 	@PostMapping
 	public ResponseEntity<String> createJob(@RequestBody Job job) {
 		jobService.createJob(job);
+//		Company c = job.getCompany();
 		return new ResponseEntity<String>("JOB ADDED SUCCESSFULLY",HttpStatus.CREATED);
 	}
 	
@@ -58,7 +61,9 @@ public class jobController {
 		if(deleted == true) {
 			return new ResponseEntity<String>("Deleted Successfully", HttpStatus.ACCEPTED);
 		}
-	return new ResponseEntity<String>("Id Not Found", HttpStatus.NOT_FOUND);
+		else {
+	        return new ResponseEntity<String>("Id Not Found", HttpStatus.NOT_FOUND);
+	    }
 	}
 	
 	
@@ -67,9 +72,12 @@ public class jobController {
 	public ResponseEntity<String> updateJob(@PathVariable long id, 
 			                                @RequestBody Job updatedJob){
 		boolean updated = jobService.updateJob(id,updatedJob);
-		if(updated)
+		if(updated == true) {
 			return new ResponseEntity<String>("Job Updated Successfully", HttpStatus.OK);
-		return new ResponseEntity<String>("Updation Unsuccessful",HttpStatus.NOT_MODIFIED);
+		}
+		else{
+		    return new ResponseEntity<String>("Updation Unsuccessful",HttpStatus.NOT_MODIFIED);
+		}
 	}
 	
 	

@@ -1,42 +1,30 @@
-package com.codeSJ.JobApplication.job;
+package com.codeSJ.JobApplication.review;
 
 import com.codeSJ.JobApplication.company.Company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-//@Table(name = "job_table")
-public class Job {
+public class Review {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title;
     private String description;
-    private String minSalary;
-    private String maxSalary;
-    private String location;
+    private double rating;
+    
     @ManyToOne
+    @JsonIgnore
     private Company company;
     
-	public Job() {
+    public Review() {
 		super();
 	}
-
-	public Job(long id, String title, String description, String minSalary, String maxSalary, String location) {
-		super();
-		this.id = id;
-		this.title = title;
-		this.description = description;
-		this.minSalary = minSalary;
-		this.maxSalary = maxSalary;
-		this.location = location;
-	}
-	
 	
 	
 	public Company getCompany() {
@@ -63,24 +51,11 @@ public class Job {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getMinSalary() {
-		return minSalary;
+	public double getRating() {
+		return rating;
 	}
-	public void setMinSalary(String minSalary) {
-		this.minSalary = minSalary;
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
-	public String getMaxSalary() {
-		return maxSalary;
-	}
-	public void setMaxSalary(String maxSalary) {
-		this.maxSalary = maxSalary;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
-    
     
 }
